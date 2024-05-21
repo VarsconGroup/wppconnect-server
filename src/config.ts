@@ -1,29 +1,33 @@
+import dotenv from 'dotenv';
+
 import { ServerOptions } from './types/ServerOptions';
 
+dotenv.config();
+
 export default {
-  secretKey: 'THISISMYSECURETOKEN',
+  secretKey: process.env.APP_SECRET_TOKEN,
   host: 'http://localhost',
   port: '21465',
-  deviceName: 'WppConnect',
+  deviceName: process.env.WHATSAPP_DEVICE_NAME,
   poweredBy: 'WPPConnect-Server',
   startAllSession: true,
-  tokenStoreType: 'file',
+  tokenStoreType: 'mongodb',
   maxListeners: 15,
   customUserDataDir: './userDataDir/',
   webhook: {
-    url: null,
+    url: process.env.WEBHOOK,
     autoDownload: true,
-    uploadS3: false,
+    uploadS3: true,
     readMessage: true,
     allUnreadOnStart: false,
     listenAcks: true,
-    onPresenceChanged: true,
-    onParticipantsChanged: true,
+    onPresenceChanged: false,
+    onParticipantsChanged: false,
     onReactionMessage: true,
     onPollResponse: true,
     onRevokedMessage: true,
     onLabelUpdated: true,
-    onSelfMessage: false,
+    onSelfMessage: true,
     ignore: ['status@broadcast'],
   },
   websocket: {
@@ -83,12 +87,12 @@ export default {
   },
   db: {
     mongodbDatabase: 'tokens',
-    mongodbCollection: '',
+    mongodbCollection: 'whatsapp',
     mongodbUser: '',
     mongodbPassword: '',
     mongodbHost: '',
     mongoIsRemote: true,
-    mongoURLRemote: '',
+    mongoURLRemote: process.env.MONGO_URI,
     mongodbPort: 27017,
     redisHost: 'localhost',
     redisPort: 6379,
@@ -97,11 +101,11 @@ export default {
     redisPrefix: 'docker',
   },
   aws_s3: {
-    region: 'sa-east-1' as any,
-    access_key_id: null,
-    secret_key: null,
-    defaultBucketName: null,
-    endpoint: null,
+    region: 'eu-north-1' as any,
+    access_key_id: process.env.AWS_S3_ACCESS_KEY_ID,
+    secret_key: process.env.AWS_S3_SECRET_KEY,
+    defaultBucketName: process.env.AWS_S3_BUCKET_NAME,
+    endpoint: 'https://s3.eu-north-1.amazonaws.com',
     forcePathStyle: null,
   },
 } as unknown as ServerOptions;

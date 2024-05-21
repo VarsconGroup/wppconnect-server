@@ -1,0 +1,43 @@
+name: Whatsapp Web Dev Pipeline
+
+on:
+  push:
+    branches:
+      - dev
+  pull_request:
+    branches:
+      - dev
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy Docker Image to Docker Hub
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Recreate .env file from the base64 format in GitHub secrets
+        run: echo "${{ secrets.BASE64_ENV }}" | base64 --decode > .env
+
+      - name: Build & Publish to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+          repository: varscong/wppconnect-server
+          dockerfile: Dockerfile
+          tags: latest
+
+      - name: Connect
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            docker login -u="${{ secrets.DOCKER_HUB_USERNAME }}" -p="${{ secrets.DOCKER_HUB_PASSWORD }}"
+            docker pull varscong/wppconnect-server:latest
+            docker rm -f whatsapp-web
+            docker compose up -d
