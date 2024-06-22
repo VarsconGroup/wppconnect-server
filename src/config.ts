@@ -92,7 +92,7 @@ export default {
     mongodbPassword: '',
     mongodbHost: '',
     mongoIsRemote: true,
-    mongoURLRemote: process.env.MONGO_URI,
+    mongoURLRemote: '',
     mongodbPort: 27017,
     redisHost: 'localhost',
     redisPort: 6379,
