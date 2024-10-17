@@ -18,7 +18,7 @@ export default {
     url: process.env.WEBHOOK,
     autoDownload: true,
     uploadS3: true,
-    readMessage: false,
+    readMessage: true,
     allUnreadOnStart: false,
     listenAcks: true,
     onPresenceChanged: false,
