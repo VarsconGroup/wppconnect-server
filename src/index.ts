@@ -20,8 +20,6 @@ import express, { Express, NextFunction, Router } from 'express';
 import boolParser from 'express-query-boolean';
 import { createServer } from 'http';
 import mergeDeep from 'merge-deep';
-//require('dotenv').config();
-import newrelic from 'newrelic';
 import process from 'process';
 import { Server as Socket } from 'socket.io';
 import { Logger } from 'winston';
@@ -37,21 +35,6 @@ import {
   startAllSessions,
 } from './util/functions';
 import { createLogger } from './util/logger';
-
-/* eslint-disable */
-newrelic.instrument(
-  { moduleName: 'parse-json', isEsm: true },
-  function wrap(shim, parseJson, moduleName) {
-    shim.wrap(parseJson.default, function wrapParseJson(shim, orig) {
-      return function wrappedParseJson(this: any) {
-        const result = orig.apply(this, arguments);
-        result.instrumented = true;
-        return true;
-      };
-    });
-  }
-);
-/* eslint-enable */
 
 export const logger = createLogger(config.log);
 
