@@ -623,7 +623,7 @@ export async function clearChat(req: Request, res: Response) {
      #swagger.parameters["session"] = {
       schema: 'NERDWHATS_AMERICA'
      }
-     
+
      #swagger.requestBody = {
       required: false,
       "@content": {
@@ -696,7 +696,7 @@ export async function archiveChat(req: Request, res: Response) {
      #swagger.parameters["session"] = {
       schema: 'NERDWHATS_AMERICA'
      }
-     
+
      #swagger.requestBody = {
       required: false,
       "@content": {
@@ -802,7 +802,7 @@ export async function deleteMessage(req: Request, res: Response) {
      #swagger.parameters["session"] = {
       schema: 'NERDWHATS_AMERICA'
      }
-     
+
      #swagger.requestBody = {
       required: false,
       "@content": {
@@ -1236,7 +1236,7 @@ export async function setProfilePic(req: Request, res: Response) {
      #swagger.parameters["session"] = {
       schema: 'NERDWHATS_AMERICA'
      }
-     #swagger.consumes = ['multipart/form-data']  
+     #swagger.consumes = ['multipart/form-data']
       #swagger.parameters['file'] = {
           in: 'formData',
           type: 'file',
@@ -1785,7 +1785,7 @@ export async function setRecording(req: Request, res: Response) {
      #swagger.parameters["session"] = {
       schema: 'NERDWHATS_AMERICA'
      }
-     
+
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -2030,7 +2030,7 @@ export async function setProfileStatus(req: Request, res: Response) {
         $status: 'My new status',
       }
      }
-     
+
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -2074,7 +2074,7 @@ export async function rejectCall(req: Request, res: Response) {
      #swagger.parameters["session"] = {
       schema: 'NERDWHATS_AMERICA'
      }
-     
+
      #swagger.requestBody = {
       required: true,
       "@content": {
@@ -2289,7 +2289,7 @@ export async function chatWoot(req: Request, res: Response): Promise<any> {
                 message.content
               );
             }
-            
+
             await client.sendFile(
               `${contato}`,
               base_url,
