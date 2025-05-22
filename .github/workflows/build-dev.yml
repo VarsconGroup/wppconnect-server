@@ -56,7 +56,7 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           script: |
             docker login ghcr.io --username nzeakokosi7 --password ${{ secrets.GHCR_PAT }}
