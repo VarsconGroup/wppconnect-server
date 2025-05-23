@@ -70,6 +70,8 @@ export default {
       '--ignore-certificate-errors',
       '--ignore-ssl-errors',
       '--ignore-certificate-errors-spki-list',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
     ],
     /**
      * Example of configuring the linkPreview generator
