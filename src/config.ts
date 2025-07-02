@@ -61,6 +61,8 @@ export default {
       '--disable-default-apps',
       '--disable-extensions',
       '--disable-sync',
+      '--disable-dev-shm-usage',
+      '--disable-gpu',
       '--disable-translate',
       '--hide-scrollbars',
       '--metrics-recording-only',
