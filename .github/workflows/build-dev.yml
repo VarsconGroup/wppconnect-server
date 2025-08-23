@@ -60,4 +60,5 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             docker login ghcr.io --username nzeakokosi7 --password ${{ secrets.GHCR_PAT }}
+            docker image prune -f || true
             docker pull ${{ env.IMAGE_NAME }}:can_read
